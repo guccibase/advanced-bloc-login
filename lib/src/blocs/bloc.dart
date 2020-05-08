@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc_login_auth/src/blocs/validators.dart';
-class Bloc extends Validators{
+class Bloc extends Object with Validators{
 
-  final _email = StreamController<String>();
-  final _password = StreamController<String>();
+  final _email = StreamController<String>.broadcast();
+  final _password = StreamController<String>.broadcast();
 
 
 
@@ -22,3 +22,5 @@ dispose(){
   _password.close();
 }
 }
+
+final bloc = Bloc();

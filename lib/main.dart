@@ -1,4 +1,4 @@
-import 'package:bloc_login_auth/src/login_screen.dart';
+import 'package:bloc_login_auth/src/screens/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
