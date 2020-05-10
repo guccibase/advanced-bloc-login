@@ -1,10 +1,13 @@
-import 'package:bloc_login_auth/src/blocs/bloc.dart';
+import 'package:bloc_login_auth/src/blocs/provider.dart';
+import 'package:bloc_login_auth/src/widgets/buttons.dart';
+import 'package:bloc_login_auth/src/widgets/textfields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of(context);
     return Scaffold(
       body: Center(
         child: Container(
@@ -12,9 +15,9 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              emailField(),
-              passwordField(),
-              submitButton(),
+              emailField(bloc),
+              passwordField(bloc),
+              submitButton(bloc),
             ],
           ),
         ),
@@ -22,49 +25,6 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget emailField(){
-    return StreamBuilder<Object>(
-      stream: bloc.email,
-      builder: (context, snapshot) {
-        return TextField(
-          onChanged: bloc.changeEmail,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            hintText: 'you@email.com',
-            labelText: 'Email Address',
-            errorText: snapshot.error
-          ),
 
-        );
-      }
-    );
-  }
-
-  Widget passwordField(){
-    return StreamBuilder(
-      stream: bloc.password,
-      builder: (context, snapshot) {
-        return TextField(
-          onChanged: bloc.changePassword,
-          obscureText: true,
-          decoration: InputDecoration(
-            hintText: 'Enter Password',
-            labelText: 'Your Password',
-            errorText: snapshot.error,
-          ),
-
-        );
-      }
-    );
-  }
-
-  Widget submitButton(){
-    return RaisedButton(
-      color: Colors.blue,
-      child: Text('Submit'),
-      onPressed: (){},
-
-    );
-  }
 }
 
